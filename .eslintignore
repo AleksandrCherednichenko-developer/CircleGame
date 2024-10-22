@@ -1,0 +1,11 @@
+node_modules/
+build/
+deploy/
+package-lock.json
+.vscode/
+.idea/
+dist/
+public/
+vite.config.*
+*eslintrc.*
+*prettierc.*

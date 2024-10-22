@@ -1,0 +1,70 @@
+@mixin size($width, $height: $width) {
+    width: $width;
+    height: $height;
+}
+
+@mixin transit($props, $duration: $defaultTransition, $delay: 0s) {
+    transition-delay: $delay;
+    transition-duration: $duration;
+    transition-property: #{$props};
+}
+
+@mixin display($display: flex, $direction: initial, $align: initial, $content: initial, $gap: 0px) {
+    display: $display;
+    flex-direction: $direction;
+    align-items: $align;
+    justify-content: $content;
+    gap: calc-rem($gap);
+}
+
+@mixin clear-link {
+    color: currentColor;
+    text-decoration: none;
+}
+
+@mixin clear-button {
+    padding: 0;
+    border: none;
+    background: none;
+    color: currentColor;
+    cursor: pointer;
+}
+
+@mixin user-drag-prevent {
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+/*
+    if need set different active ruleset
+    @include hover(true) using ($s) {
+        @if $s == 'hover' {
+            ...d
+        }
+        @if $s == 'active' {
+            ...
+        }
+    };
+ */
+@mixin hover($changeActive: false) {
+    @media (hover: hover) {
+        &:hover {
+            @if $changeActive {
+                @content ('hover');
+            } @else {
+                @content;
+            }
+        }
+    }
+    &:active {
+        @if $changeActive {
+            @content ('active');
+        } @else {
+            @content;
+        }
+    }
+}
